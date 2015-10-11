@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SvnSdk Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	
+    <string name="et_gateway">Gateway:</string>
+    <string name="et_username">Username:</string>
+    <string name="et_password">Password:</string>
+    <string name="et_tunnelip">Tunnel IP:</string>
+    
+    <string name="login_svn">Login SVN Server</string>
+    <string name="encrypt_decrypt">Encrypt/Decrypt</string>
+    <string name="faq">FAQs</string>
+    
+    
+    <string name="sdk">SDK</string>
+    <string name="svn">SVN</string>
+    <string name="logining">Logining</string>
+    <string name="login">Login</string>
+    <string name="tunnel_online">Tunnel online!</string>
+    <string name="tunnel_offline">Tunnel offline, error code:%d!</string>
+    <string name="login_success">You have successfully Login!</string>
+    <string name="login_false">Login failed!</string>
+    <string name="logout_success">You have successfully Logout!</string>
+    <string name="logout_false">Logout failed!</string>
+    <string name="logout">Logout</string>
+    <string name="check_update">Check Update</string>
+    <string name="enter">Enter</string>
+    
+    <string name="go">GO</string>
+    
+    <!-- Menu -->
+    <string name="back">Back</string>
+    <string name="menu">Menu</string>
+    <string name="menu_http_test">HTTP Test</string>
+    <string name="menu_encrypt_decrypt_test">Encrypt/Decrypt Test</string>
+    <string name="menu_mdm_test">MDM Test</string>
+    <string name="menu_speed">Speed Test</string>
+    
+    <!-- Http -->
+    <string name="urlconnection">URLConnection</string>
+    <string name="httpclient">HttpClient</string>
+    <string name="webview">WebView</string>
+    <string name="sdkwebview">SDKWebView</string>
+    <string name="webapp">WebApp</string>
+    <string name="guide">Guide</string>
+    <string name="http_nav_login"> &#160;&#160;Login&#160;</string>
+    <string name="http_nav_userinfo">UserInfo</string>
+    <string name="http_nav_download">Download</string>
+    <string name="http_nav_upload">&#160;Upload&#160;</string>
+    <string name="http_http">URL:</string>
+    <string name="http_subhttp">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="http_login_name">Name:</string>
+    <string name="http_login_password">Password:</string>
+    <string name="http_request">Request:</string>
+    <string name="http_response">Response:</string>
+    <string name="http_download_filename">FileName:</string>
+    <string name="download_ok">Download Success</string>
+    <string name="download_error">Download failed</string>
+    
+    <string name="userinfo">UserInfo</string>
+    <string name="http_userinfo_username">UserName:</string>
+    <string name="http_userinfo_lastlogintime">Last&#160;Login&#160;Time:</string>
+    <string name="download">Download</string>
+    <string name="ing">ing..</string>
+    <string name="upload">Upload</string>
+    <string name="browse">Browse</string>
+    <string name="http_upload_filepath">FilePath:</string>
+    
+    <!-- Encrypt Decrypt -->
+    <string name="file_encrypt_decrypt">File Encrypt/Decrypt</string>
+    <string name="data_encrypt_decrypt">Data Encrypt/Decrypt</string>
+    <string name="use_sqlite">Use&#160;SQLite</string>
+    <string name="use_clipboard">Clipboard Test</string>
+    
+    <!-- MDM -->
+    <string name="result">Results</string>
+    <string name="checking">Checking</string>
+    <string name="mdm_check">MDM Check</string>
+    
+    <string name="mdm_check_success">MDM Check Success</string>
+    <string name="mdm_check_false">MDM Check False</string>
+    
+    <!-- SPEED COMPARE -->
+    <string name="speed_compare">Speed Compare</string>
+    <string name="menu_speed_test">Speed Test</string>
+    <string name="speed_inner_net">INNER</string>
+    <string name="speed_outer_net">OUTER</string>
+    <string name="speed_outer_site">网址：</string>
+    <string name="speed_curr_site">访问：</string>
+    
+    <!-- Encrypt Decrypt -->
+    <string name="file_encrypt_decrypt_title">File&#160;En/Decrypt</string>
+    <string name="data_encrypt_decrypt_title">Data&#160;En/Decrypt</string>
+    <string name="encrypt_decrypt_file">File:</string>
+    <string name="original_path">Original&#160;Path:</string>
+    <string name="encrypt_path">Encrypt&#160;Path:</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="file_browser">File Browser</string>
+    <string name="open_no_soft">please install soft to open the file.</string>
+    <string name="encrypt_success">Encrypt&#160;success!</string>
+    <string name="decrypt_success">Decrypt&#160;success!</string>
+    <string name="view_file">View&#160;File</string>
+    
+    <string name="clipboard_title">Clipboard Test</string>
+    <string name="clipboard_use_custom">Use SDKClipboard:</string>
+    <string name="clipboard_use_system">Use System Clipboard:</string>
+    <!-- sqlite -->
+    <string name="sqlite_name">Name:</string>
+    <string name="sqlite_age">Age:</string>
+    <string name="insert">Insert</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+    <string name="query">Query</string>
+    <string name="sqlite_item_id">ID:</string>
+    <string name="sqlite_item_name">,Name:</string>
+    <string name="sqlite_item_age">,Age:</string>
+    
+    <string name="sqlite_result">Result:</string>
+    
+    <string name="insert_success">Insert Success</string>
+    <string name="insert_false">Insert failed</string>
+    
+    <string name="delete_success">Delete Success</string>
+    <string name="delete_false">Delete failed,Please select one item in list.</string>
+    
+    <string name="update_success">Update Success</string>
+    <string name="update_false">Update failed,Please select one item in list.</string>
+    
+    <string name="query_success">Query Success</string>
+    <string name="query_false">Query failed</string>
+    
+    <!-- common -->
+    <string name="error_tunnel_already_online">Tunnel is already online now!</string>
+    <string name="error_tunnel_already_offline">Tunnel is already offline now!</string>
+    
+    <!-- faq -->
+    <string name="faq_question_title">Q:</string>
+    <string name="faq_answer_title">A:</string>
+    
+    
+    <string name="inner">内网</string>
+    <string name="outer">外网</string>
+    
+    
+</resources>

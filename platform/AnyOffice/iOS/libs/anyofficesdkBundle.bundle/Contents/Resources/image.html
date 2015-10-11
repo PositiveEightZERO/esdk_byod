@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+    	function getQueryParams(){
+        	var url = location.search; 
+   			var theRequest = new Object(); 
+   			if (url.indexOf("?") != -1) { 
+      			var str = url.substr(1); 
+      			strs = str.split("&"); 
+      			for(var i = 0; i < strs.length; i ++) { 
+         			theRequest[strs[i].split("=")[0]]=decodeURI(strs[i].split("=")[1]); 
+      			} 
+   			} 
+   			return theRequest; 
+        }
+    
+        function showImage() {
+        	var args=getQueryParams();
+        	var url = "file://" + args['filePath'] + "/" + args['fileName'] + "." + args['suffix'];
+        	//alert(url);
+            document.body.style.backgroundImage="url('" + url + "')";
+        }
+        
+    </script>
+    </head>
+    <body id="b" onload="showImage()" marginheight="0px" marginwidth="0px"
+    	style="background-color: #fff; background-position: center; background-repeat: no-repeat; background-size: contain;" >
+    </body>
+</html>

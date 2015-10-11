@@ -1,0 +1,132 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+	<style name="layout">
+        <item name="android:background">@color/clear</item>
+	</style>
+
+	<style name="layout.title">
+        <item name="android:background">@drawable/title_bg</item>
+	</style>
+	
+	<style name="iv">
+	    <item name="android:background">@color/clear</item>
+	</style>
+	<style name="iv.item_arrow">
+	    <item name="android:layout_alignParentRight">true</item>
+	    <item name="android:layout_centerVertical">true</item>
+	    <item name="android:layout_marginRight">10dp</item>
+	</style>
+	
+	<style name="tv">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/clear</item>
+    </style>
+    <style name="tv.title_grey">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/con_grey</item>
+    </style>
+    <style name="tv.con_grey">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/con_grey</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+    <style name="tv.con_nor">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+	<style name="tv.item_con">
+	    <item name="android:textColor">@color/black</item>
+	    <item name="android:textSize">14sp</item>
+	    <item name="android:gravity">center_vertical|left</item>
+	    <item name="android:paddingLeft">10dp</item>
+	    <item name="android:paddingRight">10dp</item>
+	    <item name="android:ellipsize">end</item>
+	    <item name="android:singleLine">true</item>
+	</style>
+	
+    <style name="tv.bottom_txt">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textColor">@color/btn_content</item>
+    </style>
+    <style name="tv.btn">
+        <item name="android:textColor">@color/btn_content</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="tv.smallbtn">
+        <item name="android:textColor">@color/btn_content</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="tv.btn_nor">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="tv.btn_unable">
+        <item name="android:textColor">@color/btn_content_unable</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="tv.btn_enable">
+        <item name="android:textColor">@color/btn_content</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="tv.btn_unable_withbg">
+        <item name="android:background">@drawable/button_withbg_unable</item>
+        <item name="android:textColor">@color/btn_content_unable</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="tv.btn_enable_withbg">
+        <item name="android:background">@drawable/button_withbg_enable_nor</item>
+        <item name="android:textColor">@color/btn_normal_withbg</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="tv.title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/title_bg</item>
+    </style>
+    <style name="tv.subtitle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+    <style name="tv.edit_hint">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/high_grey</item>
+        <item name="android:background">@color/clear</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+    
+    <style name="et">
+        <item name="android:textSize">13sp</item>
+    </style>
+    
+    <style name="et.withbg">
+        <item name="android:background">@drawable/bg_create_unselected</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+    
+    <style name="et.nobg">
+        <item name="android:background">@color/clear</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+</resources>

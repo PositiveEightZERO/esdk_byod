@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SvnSdk" default="release">
+		<property environment="env" />
+  <condition property="isWindows">
+  	<os family="windows" />
+	</condition>
+	
+
+
+
+	<property name="sdk.dir" value="${env.ANDROID_SDK_HOME}" />
+	<property name="ndk.dir" value="${env.NDK_HOME}" />
+
+	<!-- fail unless="env.FOO" message="FOO not set."!-->
+
+	<echo message="${env.NDK}" />
+	
+	<fail unless="sdk.dir" message="sdk.dir is missing. Make sure to generate local.properties using 'android update project'"  />
+	<fail unless="ndk.dir" message="ndk.dir is missing. Make sure to generate local.properties using 'android update project'"  />
+
+	<condition property="ndk.build" value="ndk-build.cmd">
+    <isset property="isWindows"/>
+	</condition>
+	
+	<condition property="ndk.build" value="ndk-build">
+    <not>
+    <isset property="ndk.build"/>
+  	</not>
+	</condition>
+	
+	<property file="project.properties" />
+	<property name="sdk-platform-folder" value="${sdk.dir}/platforms/${target}" />
+
+	<property name="jar-dist" value="svnapi.jar" />
+	<property name="srcdir" value="src" />
+	<property name="outdir" value="bin" />
+	<property name="destdir" value="libs" />
+	<property name="destsodir" value="${destdir}/armeabi" />
+	<property name="jni-libs" value="jni/libs" />
+	<property name="jni-include" value="jni/software/include" />
+	<property name="bindir" value="bin" />
+	<property name="objdir" value="obj" />
+	
+	<path id="android-classpath">
+      <fileset dir="${sdk-platform-folder}">
+        <include name="android.jar"/>
+        <include name="android-support-v4.jar"/>
+      </fileset>
+      <fileset dir="${destdir}">
+        <include name="AnyOfficeSDK.jar"/>
+      </fileset>
+  </path>
+
+	<target name="init">
+		<mkdir dir="${outdir}" />
+		<mkdir dir="${destdir}" />
+		
+	</target>
+
+	<target name="jni-clean" depends="init">
+		<echo message="Cleaning native libraries..." />
+		<exec executable="${ndk.dir}/${ndk.build}" failonerror="true">
+			<arg value="clean" />
+		</exec>
+		<echo message="DONE (Cleaning native libraries)" />
+	</target>
+
+
+	<target name="jni" depends="jni-clean">
+		<echo message="Building native libraries..." />
+		<exec executable="${ndk.dir}/${ndk.build}" failonerror="true" />
+		<echo message="DONE (Building native libraries)" />
+	</target>
+
+
+	<target name="compile" depends="jni">
+		<echo message="Building jar libraries..." />
+		<echo message="copy android.jar from ${sdk-platform-folder} to ${destdir}" />
+
+		<javac encoding="utf-8" target="1.6" srcdir="${srcdir}" destdir="${outdir}"
+			debug="true"
+     			debuglevel="lines,vars,source">
+			<classpath refid="android-classpath"/>
+		</javac>
+		<echo message="DONE (Building jar libraries)" />
+	</target>
+
+
+	<target name="jar" depends="compile,jni">
+		<echo message="Building jar libraries..." />
+
+		<jar destfile="${destdir}/${jar-dist}">
+			<fileset dir="${outdir}" includes="**/*.class" />
+			<!--zipfileset src="${destdir}/SdkApi_ScreenshotAndCopyPast.jar" excludes="META-INF/*" /-->
+		</jar>
+		<!--delete quiet="true">
+    	<fileset dir="${destdir}">
+        <include name="SdkApi_ScreenshotAndCopyPast.jar"/>
+      </fileset>
+  	</delete-->
+		
+		<echo message="DONE (Building jar libraries)" />
+	</target>
+
+	<target name="release" depends="jar">
+		<echo message="Building release libraries..." />
+		<copy todir="${destsodir}">
+			<fileset dir="${jni-libs}" />
+		</copy>
+		<echo message="DONE (Building release libraries)" />
+	</target>
+	
+	<target name="clean" depends="jni-clean">
+					
+		<delete quiet="true" includeEmptyDirs="true">
+    		<fileset dir="${destdir}" includes="**/*"/>
+  		</delete>
+		<delete quiet="true" includeEmptyDirs="true">
+    		<fileset dir="${jni-include}/anyoffice"/>
+  		</delete>
+  		
+		<delete quiet="true" includeEmptyDirs="true">
+    		<fileset dir="${jni-libs}" >
+				<include name="libsvnapi.so" />
+				<include name="libsvnrms.so" />
+				<include name="libsvncrypto.so" />
+				<include name="libsvnssl.so" />
+				<include name="libanyofficesdk.so" />
+				<include name="libjniapi.so" />
+		
+			</fileset>	
+  		</delete>
+  	
+  		<delete quiet="true" includeEmptyDirs="true">
+    		<fileset dir="${bindir}"/>
+  		</delete>
+  	
+  		<delete quiet="true" includeEmptyDirs="true">
+    		<fileset dir="${objdir}"/>
+  		</delete>
+	</target>
+</project>

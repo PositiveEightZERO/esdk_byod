@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SvnDemoViewController">
+            <connections>
+                <outlet property="logingView" destination="iN0-l3-epB" id="jcx-xc-Dnt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Hk-nS9" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="O14-T8-sct">
+                            <rect key="frame" x="38" y="9" width="245" height="47"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="245" id="cNX-9L-wXL"/>
+                                <constraint firstAttribute="height" constant="47" id="m1s-6R-ruf"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="O14-T8-sct" firstAttribute="top" secondItem="CWC-Hk-nS9" secondAttribute="top" constant="9" id="twC-oO-sUi"/>
+                        <constraint firstAttribute="centerX" secondItem="O14-T8-sct" secondAttribute="centerX" constant="-0.5" id="ujT-PR-r9T"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="CWC-Hk-nS9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="A7J-xF-bsn"/>
+                <constraint firstItem="CWC-Hk-nS9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DFE-Hx-sZn"/>
+                <constraint firstAttribute="bottom" secondItem="CWC-Hk-nS9" secondAttribute="bottom" id="Jr8-ot-dG6"/>
+                <constraint firstAttribute="trailing" secondItem="CWC-Hk-nS9" secondAttribute="trailing" id="WtG-9o-pmA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="loading.png" width="340" height="62"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

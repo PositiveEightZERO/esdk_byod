@@ -1,0 +1,23 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\tools\\nodejs\\\\node.exe',
+1 verbose cli   'D:\\tools\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'config',
+1 verbose cli   'set',
+1 verbose cli   'proxy',
+1 verbose cli   'http://p.getqujing.com/paths/u9ollh4h.pac' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.34
+4 verbose node symlink D:\tools\nodejs\\node.exe
+5 error Error: ENOENT, stat 'C:\Users\t00212088\AppData\Roaming\npm'
+6 error If you need help, you may report this *entire* log,
+6 error including the npm and node versions, at:
+6 error     <http://github.com/npm/npm/issues>
+7 error System Windows_NT 6.1.7601
+8 error command "D:\\tools\\nodejs\\\\node.exe" "D:\\tools\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "config" "set" "proxy" "http://p.getqujing.com/paths/u9ollh4h.pac"
+9 error cwd D:\cordova\byod
+10 error node -v v0.10.34
+11 error npm -v 1.4.28
+12 error path C:\Users\t00212088\AppData\Roaming\npm
+13 error code ENOENT
+14 error errno 34
+15 verbose exit [ 34, true ]

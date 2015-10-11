@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BYOD_SDK_Android" default="release" basedir="../../">
+
+	<property environment="env" />
+  
+	<property name="sdk.dir" value="${env.ANDROID_SDK_HOME}" />
+	<property name="ndk.dir" value="${env.NDK_HOME}" />
+
+	<!-- fail unless="env.FOO" message="FOO not set."!-->
+
+	<echo message="${env.NDK}" />
+	
+	<fail unless="sdk.dir" message="sdk.dir is missing. Make sure to generate local.properties using 'android update project'"  />
+	<fail unless="ndk.dir" message="ndk.dir is missing. Make sure to generate local.properties using 'android update project'"  />
+	
+	<property name="src_base_dir" value="source" />
+	<property name="demo_dir" value="test/demo" />
+	<property name="platform_dir" value="platform" />
+	<property name="opensrc_dir" value="open_src" />
+	<property name="test_dir" value="test" />
+	<property name="build_dir" value="Build" />
+	<property name="release_dir" value="00.Release" />
+	
+	
+	<property name="sub_svnsdk_dir" value="${src_base_dir}/Android/SVN_SDK" />
+	<property name="sub_svndemo_dir" value="${demo_dir}/Android/SvnSdkDemo" />
+	
+	<loadproperties srcFile="${build_dir}/release.properties" />
+	
+	<tstamp>
+        <format property="TODAY" pattern="yyyy-MM-dd" locale="cn" />
+  	</tstamp>
+	
+	<target name="init">
+		<echo message="init BYOD_SDK_Android project" />
+		
+		<echo message="copy include files..." />
+
+    
+    	<copy todir="${sub_svnsdk_dir}/jni/software/include/anyoffice" overwrite="true" encoding="GBK" outputencoding="UTF-8">
+			<fileset dir="${platform_dir}/AnyOffice/Android/inc">
+				<include name="**/*.h" />
+			</fileset>
+    	</copy>
+    
+    	<echo message="copy library files..." />
+
+    
+    	<copy todir="${sub_svnsdk_dir}/jni/libs" overwrite="true">
+			<fileset dir="${ndk.dir}/Android">
+				<include name="*.so" />
+			</fileset>
+			<fileset dir="${platform_dir}/AnyOffice/Android/libs">
+				<include name="*.so" />
+			</fileset>
+    	</copy>
+    
+    	<copy todir="${sub_svnsdk_dir}/libs" overwrite="true">
+			<fileset dir="${platform_dir}/AnyOffice/Android/libs">
+				<include name="*.jar" />
+			</fileset>
+    	</copy>
+		
+	 	<echo message="init finished BYOD_SDK_Android project " />
+		
+	</target>
+	
+	
+	<target name="release" depends="clean, init">
+		<echo message="building BYOD_SDK_Android project" />
+
+    
+		<ant antfile="build.xml" dir="${sub_svnsdk_dir}" target="release"/>
+		
+		<echo message="build finished BYOD_SDK_Android project" />
+		
+		
+		<echo message="to build SVN_SDK_Demo project" />
+		<copy todir="${sub_svndemo_dir}/libs" overwrite="true">
+			<fileset dir="${sub_svnsdk_dir}/libs/">
+				<include name="*.jar" />
+				<include name="armeabi/libsvnapi.so" />
+				<include name="armeabi/libanyofficesdk.so" />
+				<include name="armeabi/libjniapi.so" />
+				<include name="armeabi/libtfcard.so" />
+			</fileset>
+    	</copy>
+		
+		<ant antfile="build.xml" dir="${sub_svndemo_dir}" target="release"/>
+		<echo message="build finished SVN_SDK_Demo project" />
+		
+		<delete quiet="true" includeEmptyDirs="true">
+		  	<fileset dir="${release_dir}/${TODAY}/tmp" includes="**/*"/>
+		</delete>
+		
+		<copy todir="${release_dir}/${TODAY}/tmp/Android" overwrite="true">
+			<fileset dir="${sub_svnsdk_dir}/libs/">
+				<include name="*.jar" />
+				<include name="armeabi/libsvnapi.so" />
+				<include name="armeabi/libanyofficesdk.so" />
+				<include name="armeabi/libjniapi.so" />
+				<include name="armeabi/libtfcard.so" />
+			</fileset>
+    	</copy>
+
+		<zip destfile="${release_dir}/${TODAY}/${project_name}_${project_version_software}_Android.zip" >
+			<fileset dir="${release_dir}/${TODAY}/tmp" />
+		</zip>
+		
+		<delete quiet="true" includeEmptyDirs="true">
+		  	<fileset dir="${release_dir}/${TODAY}/tmp" includes="**/*"/>
+		</delete>
+		
+		<copy todir="${release_dir}/${TODAY}/tmp/SvnSdkDemo" overwrite="true">
+			<fileset dir="${sub_svndemo_dir}/">
+				<exclude name="libs/svnapi.jar" />
+				<exclude name="libs/AnyOfficeSDK.jar" />
+				<exclude name="libs/libammsdk.jar" />
+				<exclude name="libs/gson-*.jar" />
+				<exclude name="libs/armeabi/*.so" />
+				<exclude name="bin/**" />
+				<exclude name="gen/**" />
+			</fileset>
+    	</copy>
+    
+    
+		<zip destfile="${release_dir}/${TODAY}/${project_name} ${project_version_demo} 代码样例 01(Android).zip">
+			<fileset dir="${release_dir}/${TODAY}/tmp" />
+		</zip>
+		
+		<delete quiet="true" includeEmptyDirs="true">
+		  	<fileset dir="${release_dir}/${TODAY}/tmp"/>
+		</delete>
+		
+	</target>
+	
+	
+	<target name="clean">
+		<echo message="cleaning BYOD_SDK_Android project" />
+
+		<ant antfile="build.xml" dir="${sub_svnsdk_dir}" target="clean"/>
+
+		<ant antfile="build.xml" dir="${sub_svndemo_dir}" target="clean"/>
+		
+		<delete quiet="true" includeEmptyDirs="true">
+    		<fileset dir="${sub_svndemo_dir}/libs">
+    			<include name="svnapi.jar" />
+    			<include name="AnyOfficeSDK.jar" />
+    			<include name="gson-*.jar" />
+				<include name="armeabi/*.so" />
+			</fileset>	
+  		</delete>
+  	
+
+  	
+		<echo message="clean finished SVN_SDK_Demo project" />
+
+		
+	</target>
+</project>

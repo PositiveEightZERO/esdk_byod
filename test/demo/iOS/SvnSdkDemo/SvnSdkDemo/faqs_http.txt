@@ -1,0 +1,9 @@
+[===Q===]
+如何使用NSURLConnection进行安全HTTP访问？
+[===A===]
+1、初始化SDK环境
+2、注册NSURLProtocol：
+  [NSURLProtocol registerClass:[SecBrowHttpProtocol class]];
+3、调用NSURLConnection接口
+
+

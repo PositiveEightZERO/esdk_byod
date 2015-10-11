@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+    <title>error</title>
+    <style>
+        body {
+            font-family: 'Droid Sans','Droid Sans Fallback','Helvetica Neue','Hiragino Sans GB W3',微软雅黑;
+            background: url(./error_en.png) no-repeat;
+        }
+        p {
+            padding: 0;
+            text-align: center;
+            background-color: transparent;
+        }
+        div {
+            width: 90%;
+            margin: 10px auto;
+            color: #8C8C8C;
+        }
+        ul{
+            float: right;
+        }
+        @media screen and (max-device-width: 600px) {
+            body {
+                background-position: center 20px;
+                background-size: 60%
+            }
+            p {
+                margin: 220px 0 0;
+                font-size: 16px;
+            }
+            div {
+                max-width: 220px;
+                font-size: 16px;
+            }
+        }
+        @media screen and (min-device-width: 601px) {
+            body {
+                background-position: center 120px;
+            }
+            p {
+                margin: 460px 0 0;
+                font-size: 24px;
+            }
+            div {
+                max-width: 400px;
+                font-size: 24px;
+            }
+        }
+    </style>
+    <script>
+        var language = null;
+        var envLang = navigator.language || 'zh-CN';
+        if(envLang.indexOf('zh-') != -1) 
+        {
+            language = 1;
+        }
+        else
+        {
+            language = 0;
+        }    
+        var ch = ['很抱歉，打不开该网页！','可能的原因：','找不到服务器','尚未连入互联网','输入的网址不正确'];
+        var en = ['Sorry，the page you visit can not be found!','Possible reasons:','Can not find server','Network instability','URL does not exist'];
+        window.addEventListener('load', function(){
+            var text = language ? ch : en;
+            var list = document.getElementsByTagName("ul")[0];
+            var node = document.createTextNode(text[1]);
+            document.getElementsByTagName("div")[0].insertBefore(node, list);
+            document.getElementsByTagName("p")[0].innerHTML = text[0];            
+            document.getElementsByTagName("li")[0].innerHTML = text[2]; 
+            document.getElementsByTagName("li")[1].innerHTML = text[3];
+            document.getElementsByTagName("li")[2].innerHTML = text[4];
+                                
+            if(language)
+            {
+                document.body.style.backgroundImage = "url(./error_ch.png)";
+            }
+        }, false);
+    </script>
+</head>
+<body>
+    <p id="tip"></p>
+    <div id="container">
+        <ul id="reason">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

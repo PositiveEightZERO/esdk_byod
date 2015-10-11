@@ -1,0 +1,8 @@
+[===Q===]
+如何使用HttpClient进行安全HTTP访问？
+[===A===]
+1、初始化SDK环境
+2、login，创建隧道
+3、使用SvnHttpClient
+
+

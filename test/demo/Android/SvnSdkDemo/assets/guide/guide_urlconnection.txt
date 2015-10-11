@@ -1,0 +1,6 @@
+﻿3 steps to use URLConnection:
+1、登录SVN创建隧道
+2、设置URLStreamHandlerFactory为SvnURLStreamHandlerFactory
+	URLStreamHandlerFactory factory = new SvnURLStreamHandlerFactory();
+    URL.setURLStreamHandlerFactory(factory);
+3、其他使用相同

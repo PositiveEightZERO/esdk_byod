@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BYOD_SDK_Android" default="release" basedir="../../">
+
+	<property environment="env" />
+  
+	<property name="sdk.dir" value="${env.ANDROID_SDK_HOME}" />
+	<property name="ndk.dir" value="${env.NDK_HOME}" />
+
+	<!-- fail unless="env.FOO" message="FOO not set."!-->
+
+	<echo message="${env.NDK}" />
+	
+	<fail unless="sdk.dir" message="sdk.dir is missing. Make sure to generate local.properties using 'android update project'"  />
+	<fail unless="ndk.dir" message="ndk.dir is missing. Make sure to generate local.properties using 'android update project'"  />
+	
+
+	<property name="demo_dir" value="test/demo/CordovaTestApp/platforms/android" />
+	
+	<target name="release" depends="clean">
+		<echo message="building inappbrowser project" />
+
+    
+		<ant antfile="build.xml" dir="${demo_dir}" target="release"/>
+		
+		
+		
+	</target>
+	
+	
+	<target name="clean">
+		<echo message="cleaning inappbrowser project" />
+
+		<ant antfile="build.xml" dir="${demo_dir}" target="clean"/>
+
+		
+
+  	
+		<echo message="clean finished inappbrowser project" />
+
+		
+	</target>
+</project>

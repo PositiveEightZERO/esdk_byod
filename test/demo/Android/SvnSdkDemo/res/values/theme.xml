@@ -1,0 +1,12 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="Theme.SDKApp" parent="android:Theme">
+		<!-- 设置无标题--> 
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:textSize">10sp</item>
+	    <!-- 背景色 
+	    <item name="android:background">@color/white</item>-->
+	</style>
+	<style name="Theme.Activity" parent="android:Theme">
+	    <item name="android:background">@color/white</item>
+	</style>
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BYOD_SDK_Win32" default="release" basedir="../../">
+
+
+	
+	<property name="src_base_dir" value="BYOD_SDK" />
+	<property name="demo_dir" value="demo" />
+	<property name="platform_dir" value="platform" />
+	<property name="opensrc_dir" value="open_src" />
+	<property name="build_dir" value="Build" />
+	<property name="release_dir" value="00.Release" />
+	
+	
+	<loadproperties srcFile="${build_dir}/release.properties" />
+	
+	<tstamp>
+        <format property="TODAY" pattern="yyyy-MM-dd" locale="cn" />
+  	</tstamp>
+
+
+  	<target name="release">
+		<echo message="building BYOD_SDK_WIN32 project" />
+
+  
+		<delete quiet="true" includeEmptyDirs="true">
+		  	<fileset dir="${release_dir}/${TODAY}/tmp" includes="**/*"/>
+		</delete>
+		
+		<copy todir="${release_dir}/${TODAY}/tmp/Win32" overwrite="true">
+			<fileset dir="${platform_dir}/AnyOffice/win32/">
+			</fileset>
+    	</copy>
+
+		<zip destfile="${release_dir}/${TODAY}/${project_name}_${project_version_software}_Windows.zip" >
+			<fileset dir="${release_dir}/${TODAY}/tmp" />
+		</zip>
+		
+		<delete quiet="true" includeEmptyDirs="true">
+		  	<fileset dir="${release_dir}/${TODAY}/tmp" includes="**/*"/>
+		</delete>
+		
+
+		
+	</target>
+
+</project>

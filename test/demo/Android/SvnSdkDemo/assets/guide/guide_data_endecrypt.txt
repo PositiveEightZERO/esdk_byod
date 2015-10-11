@@ -1,0 +1,4 @@
+﻿2 steps to do data encrypt／decrypt:
+1、初始化文件加解密环境
+	相关接口：SDKContext.init, LoginAgent.loginSync
+2、调用EncryptTool的数据encrypt和decrypt接口

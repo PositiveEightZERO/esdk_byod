@@ -1,0 +1,29 @@
+3 steps to use ASIHTTPRequest:
+
+1、初始化SDK环境
+2、创建隧道
+3、调用ASIHTTPRequest接口
+
+示例：
+- (void)doLoginThroughASIHTTPRequest
+{
+    NSString* path = [self.pathTextField text];
+    NSString* subPath = [self.subPathTextField text];
+    
+    NSString *URLPath = [NSString stringWithFormat:@"%@/%@", path, subPath ];
+    
+    NSURL *url = [NSURL URLWithString:URLPath];
+    
+    
+    SvnASIFormDataRequest *request = [SvnASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setPostValue:[self.nameTextField text] forKey:@"username"];
+    [request setPostValue:[self.passwordTextField text] forKey:@"password"];
+    
+    
+    [request setUseSVN:YES];
+    
+    [request startAsynchronous];
+}
+
+

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BYOD_SDK_iOS" default="release" basedir="../../">
+
+
+
+	<property name="sdk_dir" value="source" />
+	<property name="demo_dir" value="test/demo" />
+	<property name="platform_dir" value="platform" />
+	<property name="build_dir" value="Build" />
+	<property name="release_dir" value="00.Release" />
+
+	<loadproperties srcFile="${build_dir}/release.properties" />
+	
+	<tstamp>
+        <format property="TODAY" pattern="yyyy-MM-dd" locale="cn" />
+  	</tstamp>
+  
+  
+  
+
+	<property name="sub_sdk_dir" value="${sdk_dir}/iOS/SvnSdk" />
+	<property name="sub_demo_dir" value="${demo_dir}/iOS/SvnSdkDemo" />
+
+	<property name="sdk_build_dir_xcode" value="${sub_sdk_dir}/DerivedData" />
+	<property name="sdk_build_dir" value="${sub_sdk_dir}/build" />
+	<property name="sdk_debug_dir" value="${sdk_build_dir}/Debug-iphonesimulator" />
+	<property name="sdk_release_dir" value="${sdk_build_dir}/Release-iphoneos" />
+	
+	
+  	<property name="demo_build_dir_xcode" value="${sub_demo_dir}/DerivedData" />
+	<property name="demo_build_dir" value="${sub_demo_dir}/build" />
+	
+	<property name="sdk.project" value="${sub_sdk_dir}/SvnSdk.xcodeproj" />
+	<property name="demo.project" value="${sub_demo_dir}/SvnSdkDemo.xcodeproj" />
+	<property name="sdk.debug" value="iphonesimulator" />
+	<property name="sdk.release" value="iphoneos" />
+	<property name="configuration.debug" value="Debug" />	
+	<property name="configuration.release" value="Release" />
+	
+
+  	<target name="sdkclean">
+		<echo message="clean BYOD_SDK_iOS project" />
+
+		<delete quiet="true" includeEmptyDirs="true" dir="${sdk_build_dir_xcode}"/>
+			
+			
+		<delete quiet="true" includeEmptyDirs="true" dir="${sdk_build_dir}" />
+
+		<echo message="delete include files..." />
+
+		<delete quiet="true" includeEmptyDirs="true">
+			<fileset dir="${sub_sdk_dir}/SvnSdk/header">
+			</fileset>
+		</delete>
+		<echo message="delete library files..." />
+
+		<delete quiet="true" includeEmptyDirs="true">
+			<fileset dir="${sub_sdk_dir}/SvnSdk/libs">
+			</fileset>
+		</delete>
+		
+		<delete quiet="true" includeEmptyDirs="true">
+			<fileset dir="${sub_sdk_dir}/SvnSdk/anyofficesdkBundle.bundle">
+			</fileset>
+		</delete>
+		
+		<echo message="clean finished BYOD_SDK_iOS project " />
+
+	</target>
+	
+
+	<target name="sdkinit">
+		<echo message="init BYOD_SDK_iOS project" />
+
+
+		<echo message="copy include files..." />
+		<copy todir="${sub_sdk_dir}/SvnSdk/header" overwrite="true" encoding="GBK" outputencoding="UTF-8">
+			<fileset dir="${platform_dir}/AnyOffice/iOS/inc">
+				<include name="**/*.h" />
+			</fileset>
+		</copy>
+
+		<copy todir="${sub_sdk_dir}/SvnSdk/header" overwrite="true">
+			<fileset dir="${platform_dir}/AnyOffice/iOS/inc">
+				<include name="CustomCopyAndPast.h" />
+				<include name="MdmDeviceIdInfo.h" />
+				<include name="MyTextFidld.h" />
+				<include name="MyTextView.h" />
+				<include name="MyWebView.h" />
+				<include name="NetStatusManager.h" />
+				<include name="PreviewView.h" />
+				<include name="SDKContext.h" />
+				<include name="AppInfo.h" />
+				<include name="AppManager.h" />
+				<include name="DocumentController.h" />
+				<include name="AnyOfficeWebWiew.h" />
+				<include name="login/*.h" />
+			</fileset>
+		</copy>
+
+
+		<echo message="copy library files..." />
+
+		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/debug/libsvnapi.a" file="${platform_dir}/AnyOffice/iOS/libs/libsvnapi_sim.a" overwrite="true" />
+		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/release/libsvnapi.a" file="${platform_dir}/AnyOffice/iOS/libs/libsvnapi.a" overwrite="true" />
+
+
+		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/debug/libanyofficesdk.a" file="${platform_dir}/AnyOffice/iOS/libs/libanyofficesdk_sim.a" overwrite="true" />
+		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/release/libanyofficesdk.a" file="${platform_dir}/AnyOffice/iOS/libs/libanyofficesdk.a" overwrite="true" />
+
+
+ 		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/debug/libsdkviewapi.a" file="${platform_dir}/AnyOffice/iOS/libs/libsdkviewapi_sim.a" overwrite="true"  failonerror="false"/>
+		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/release/libsdkviewapi.a" file="${platform_dir}/AnyOffice/iOS/libs/libsdkviewapi.a" overwrite="true" failonerror="false"/> 
+
+		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/debug/libsdkviewapi.a" file="${platform_dir}/AnyOffice/iOS/libs/libsdkview_sim.a" overwrite="true" failonerror="false"/>
+		<copy tofile="${sub_sdk_dir}/SvnSdk/libs/release/libsdkviewapi.a" file="${platform_dir}/AnyOffice/iOS/libs/libsdkview.a" overwrite="true" failonerror="false"/>
+
+		
+		<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${platform_dir}/AnyOffice/iOS/libs/anyofficesdkBundle.bundle ${sub_sdk_dir}/SvnSdk/"  />     
+    	</exec>
+    
+    
+		 <!--copydir 
+           dest="${sub_sdk_dir}/SvnSdk/anyofficesdkBundle.bundle" src="${platform_dir}/AnyOffice/iOS/libs/anyofficesdkBundle.bundle" forceoverwrite="true" /-->
+		
+		<echo message="init finished BYOD_SDK_iOS project " />
+	</target>
+
+	<target name="sdkbuild" depends="sdkclean, sdkinit">
+		<exec executable="xcodebuild" failonerror="true">
+			<arg line="-project ${sdk.project}" />
+			<arg line="-target SvnSdk" />
+      		<arg line="-sdk ${sdk.debug}" />
+			<arg line="-configuration ${configuration.debug}" />       
+    	</exec>
+    
+    
+	    <!--xcodebuild -configuration Release UFW_ACTION=archive clean build-->
+	    
+	    <exec executable="xcodebuild" failonerror="true">
+	    	<arg line="-project ${sdk.project}" />
+	    	<arg line="-target SvnSdk" />
+			<arg line="-configuration ${configuration.release}" />    
+			<arg line=" UFW_ACTION=archive" /> 
+			<arg line=" clean build" />   
+	    </exec>
+
+	    <exec executable="xcodebuild" failonerror="true">
+	    	<arg line="-project ${sdk.project}" />
+	    	<arg line="-target SvnSdkResource" />
+			<arg line="-configuration ${configuration.release}" />    
+			<arg line=" UFW_ACTION=archive" /> 
+			<arg line=" clean build" />   
+	    </exec>
+    
+    
+    <!--copy todir="${sdk_build_dir}/libs/Debug-iphonesimulator" overwrite="true" includeEmptyDirs="true">
+			<fileset dir="${sub_sdk_dir}/SvnSdk/libs/debug" >
+				<include name="*.a" />
+			</fileset>
+		</copy -->
+		<!--copy todir="${sdk_build_dir}/libs/Release-iphoneos" overwrite="true" includeEmptyDirs="true">
+			<fileset dir="${sub_sdk_dir}/SvnSdk/libs/release" >
+				<include name="*.a" />
+			</fileset>
+		</copy-->
+	
+		
+	</target>
+
+	<target name="democlean">
+		<echo message="clean BYOD_SDK_Demo_iOS project" />
+	
+	  <delete quiet="true" includeEmptyDirs="true" dir="${demo_build_dir_xcode}" />
+	  <delete quiet="true" includeEmptyDirs="true" dir="${demo_build_dir}" />
+	
+		
+		
+		<delete dir="${sub_demo_dir}/SvnSdkDemo/SvnSdk.framework" quiet="true" includeEmptyDirs="true" />
+
+		<delete dir="${sub_demo_dir}/SvnSdkDemo/SvnSdkResource.bundle" quiet="true" includeEmptyDirs="true" />
+		
+		<delete dir="${sub_demo_dir}/SvnSdkDemo/anyofficesdkBundle.bundle" quiet="true" includeEmptyDirs="true" />
+		
+	
+		<echo message="clean finished BYOD_SDK_Demo_iOS project " />
+	
+	</target>
+
+	<target name="demoinit">
+		<echo message="init BYOD_SDK_Demo_iOS project" />
+
+		<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${sdk_release_dir}/SvnSdk.framework ${sub_demo_dir}/SvnSdkDemo/"  />     
+    	</exec>
+
+
+    	<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${sdk_release_dir}/SvnSdkResource.bundle ${sub_demo_dir}/SvnSdkDemo/"  />     
+    	</exec>
+    
+    	<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${sub_sdk_dir}/SvnSdk/anyofficesdkBundle.bundle ${sub_demo_dir}/SvnSdkDemo/"  />     
+    	</exec>
+
+		<!--copy todir="${sub_demo_dir}/SvnSdkDemo/" overwrite="true" includeEmptyDirs="true">
+			<fileset dir="${sdk_release_dir}" >
+			</fileset>
+		</copy-->
+
+	<echo message="init finished BYOD_SDK_Demo_iOS project" />
+		
+</target>
+
+
+	<target name="demobuild" depends="democlean, demoinit">
+
+		<exec executable="xcodebuild" failonerror="true">
+			<arg line="-project ${demo.project}" />
+
+      		<arg line="-sdk ${sdk.debug}" />
+			<arg line="-configuration ${configuration.debug}" />  
+    	</exec>
+    
+    
+    	<exec executable="xcodebuild" failonerror="true">
+			<arg line="-project ${demo.project}" />
+      		<arg line="-sdk ${sdk.release}" />
+			<arg line="-configuration ${configuration.release}" />       
+    	</exec>
+	</target>
+	
+	<target name="release" depends="sdkbuild, demobuild">
+		
+		<delete dir="${release_dir}/${TODAY}/tmp" quiet="true" includeEmptyDirs="true" />
+		<mkdir dir="${release_dir}/${TODAY}/tmp"/>
+		
+		<delete dir="./iOS" quiet="true"  includeEmptyDirs="true" />
+
+		
+		<mkdir dir="./iOS/"/>
+		
+		<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${sdk_release_dir}/SvnSdk.framework ./iOS/"  />     
+    	</exec>
+
+    	<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${sdk_release_dir}/SvnSdkResource.bundle ./iOS/"  />     
+    	</exec>
+   
+		<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${sub_sdk_dir}/SvnSdk/anyofficesdkBundle.bundle ./iOS/"  />     
+    	</exec>
+    
+		<!--copy todir="${release_dir}/${TODAY}/tmp/iOS" overwrite="true">
+			<fileset dir="${sdk_release_dir}">
+	
+			</fileset>
+    	</copy-->
+
+		<!--zip destfile="${release_dir}/${TODAY}/${project_name}_${project_version}_iOS.zip" >
+			<fileset dir="${release_dir}/${TODAY}/tmp" />
+		</zip-->
+		
+		<exec executable="zip" failonerror="true">
+			<arg line="-ry ${release_dir}/${TODAY}/${project_name}_${project_version_software}_iOS.zip ./iOS"  />     
+    </exec>
+    
+    <delete dir="./iOS" quiet="true"  includeEmptyDirs="true">
+		  
+		</delete>
+		
+		<delete quiet="true" includeEmptyDirs="true">
+		  <fileset dir="${release_dir}/${TODAY}/tmp" includes="**/*"/>
+		</delete>
+		
+		<copy todir="${release_dir}/${TODAY}/tmp/SvnSdkDemo" overwrite="true">
+			<fileset dir="${sub_demo_dir}/">
+				<exclude name="SvnSdk.framework/**" />
+				<exclude name="build/**" />
+				<exclude name="DerivedData/**" />
+			</fileset>
+    	</copy>
+    
+    
+		<zip destfile="${release_dir}/${TODAY}/${project_name} ${project_version_demo} 代码样例 01(iOS).zip">
+			<fileset dir="${release_dir}/${TODAY}/tmp" />
+		</zip>
+		
+		<delete dir="${release_dir}/${TODAY}/tmp" quiet="true" includeEmptyDirs="true" />
+
+	</target>
+	
+	<target name="clean" depends="sdkclean, democlean">
+	</target>
+</project>

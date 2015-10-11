@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.huawei.esdk.demo" android:versionCode="1"
+	android:versionName="0.6">
+
+	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
+
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />  
+	
+	<uses-permission android:name="com.huawei.anyoffice.permisson.SIGNATURE" />
+
+	<application android:allowBackup="true" android:icon="@drawable/icon_120x120"
+		android:label="@string/app_name" android:theme="@style/Theme.SDKApp">
+		<activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+			android:name="com.huawei.esdk.demo.LoginActivity" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.MenuActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+			android:name="com.huawei.esdk.demo.http.HttpActivity" android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.http.WebViewActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.encrypt.FileEnDecryptActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.encrypt.FileBrowserActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.encrypt.DataEnDecryptActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.encrypt.SqliteActivity"
+			android:label="@string/app_name">
+		</activity>
+
+		<activity android:name="com.huawei.esdk.demo.encrypt.ClipboardActivity"
+			android:label="@string/app_name">
+		</activity>
+
+
+		<activity android:name="com.huawei.esdk.demo.EnDecryptMenuActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.mdm.MDMActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.FaqsActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.GuideActivity"
+			android:label="@string/app_name">
+		</activity>
+		<activity android:name="com.huawei.esdk.demo.http.SpeedCompareActivity"
+			android:windowSoftInputMode="adjustUnspecified|stateHidden"
+			android:label="@string/app_name">
+		</activity>
+
+		<activity android:label="@string/app_name"
+			android:name="com.huawei.anyoffice.sdk.doc.ui.SDKDocViewer" />
+
+		<!-- 登录界面（统一认证需要） -->
+		<activity android:name="com.huawei.anyoffice.sdk.ui.LoginAuthActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|screenSize" />
+		<!-- 登录配置界面（统一认证需要） -->
+		<activity android:name="com.huawei.anyoffice.sdk.ui.LoginConfigActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|screenSize" />
+		<!-- 诊断界面（统一认证需要） -->
+		<activity android:name="com.huawei.anyoffice.sdk.ui.LoginDiagnoseActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|screenSize" />
+
+		<activity android:name="com.huawei.anyoffice.sdk.ui.WebAppActivity" />
+
+		<activity android:name="com.huawei.anyoffice.sdk.doc.ui.RarViewer" />
+
+
+		<!-- SDK中感知终端网络变更（统一认证需要） -->
+		<receiver android:name="com.huawei.anyoffice.sdk.network.NetworkReceiver">
+			<intent-filter>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+			</intent-filter>
+		</receiver>
+
+		<service android:name="com.huawei.anyoffice.sdk.view.PackageInstallerService">
+			<intent-filter>
+				<action android:name="com.huawei.anyoffice.sdk.view.PackageInstaller" />
+			</intent-filter>
+		</service>
+
+
+	</application>
+
+</manifest>

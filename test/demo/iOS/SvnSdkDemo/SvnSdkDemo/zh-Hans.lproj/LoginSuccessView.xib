@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SvnDemoViewController">
+            <connections>
+                <outlet property="checkUpdateButton" destination="r35-SG-YUf" id="nFH-2J-L9w"/>
+                <outlet property="enterButton" destination="RGG-i1-pd1" id="hmg-UV-aeU"/>
+                <outlet property="loginSuccessView" destination="Iww-f9-D6F" id="oQ0-EN-73D"/>
+                <outlet property="logoutButton" destination="HrT-sV-bbQ" id="qKm-EN-1WD"/>
+                <outlet property="tunnelIPTextFiled" destination="4Zb-k3-KVk" id="Y1p-uK-rd8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Iww-f9-D6F">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzr-iL-mVV" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBy-bh-3SE" userLabel="TunnelIP View">
+                            <rect key="frame" x="17" y="24" width="286" height="56"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="edit_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="FgW-ir-FcF">
+                                    <rect key="frame" x="30" y="9" width="226" height="36"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tunnel IP:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqD-MQ-r6Y">
+                                    <rect key="frame" x="24" y="17" width="90" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="deviceRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="offline" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Zb-k3-KVk">
+                                    <rect key="frame" x="122" y="11" width="128" height="31"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="gG9-U6-CQz"/>
+                                <constraint firstAttribute="width" constant="286" id="nZ9-Vy-TAj"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_success.png" translatesAutoresizingMaskIntoConstraints="NO" id="fj8-S2-LOP">
+                            <rect key="frame" x="45" y="165" width="235" height="73"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="73" id="5Ei-ti-gOG"/>
+                                <constraint firstAttribute="width" constant="235" id="ePq-Eo-IeZ"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGG-i1-pd1">
+                            <rect key="frame" x="113" y="85" width="95" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="rgz-1Y-yve"/>
+                                <constraint firstAttribute="width" constant="95" id="wyz-wc-5aN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                            <state key="normal" title="Enter">
+                                <color key="titleColor" red="0.0" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="enterButtonClicked:" destination="-1" eventType="touchUpInside" id="ycv-5V-3o5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r35-SG-YUf">
+                            <rect key="frame" x="97" y="270" width="126" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="126" id="58F-HL-xYI"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                            <state key="normal" title="Check Update">
+                                <color key="titleColor" red="0.0" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="checkUpdateButtonClicked:" destination="-1" eventType="touchUpInside" id="txy-Si-stW"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrT-sV-bbQ">
+                            <rect key="frame" x="113" y="126" width="95" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="95" id="XHY-uR-cZa"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="iK4-D6-AzD"/>
+                                <constraint firstAttribute="height" constant="31" id="l9O-0q-WOO"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="95" id="xwY-pt-QD8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                            <state key="normal" title="Logout">
+                                <color key="titleColor" red="0.0" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="logoutButtonClicked:" destination="-1" eventType="touchUpInside" id="g8e-f9-5wW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="FBy-bh-3SE" firstAttribute="top" secondItem="Wzr-iL-mVV" secondAttribute="top" constant="24" id="PKh-1X-dB8"/>
+                        <constraint firstAttribute="centerX" secondItem="FBy-bh-3SE" secondAttribute="centerX" id="SrL-QD-Kfx"/>
+                        <constraint firstAttribute="centerX" secondItem="r35-SG-YUf" secondAttribute="centerX" id="cV0-y8-v03"/>
+                        <constraint firstAttribute="centerX" secondItem="HrT-sV-bbQ" secondAttribute="centerX" constant="-0.5" id="fUP-Hr-Sn6"/>
+                        <constraint firstItem="r35-SG-YUf" firstAttribute="top" secondItem="Wzr-iL-mVV" secondAttribute="top" constant="270" id="fte-7r-0xa"/>
+                        <constraint firstAttribute="centerX" secondItem="RGG-i1-pd1" secondAttribute="centerX" id="gEA-in-msf"/>
+                        <constraint firstItem="fj8-S2-LOP" firstAttribute="top" secondItem="Wzr-iL-mVV" secondAttribute="top" constant="165" id="n1S-yc-TS0"/>
+                        <constraint firstItem="RGG-i1-pd1" firstAttribute="top" secondItem="Wzr-iL-mVV" secondAttribute="top" constant="85" id="tMb-jh-fbs"/>
+                        <constraint firstAttribute="centerX" secondItem="fj8-S2-LOP" secondAttribute="centerX" constant="-2.5" id="wvh-XJ-p2n"/>
+                        <constraint firstItem="HrT-sV-bbQ" firstAttribute="top" secondItem="Wzr-iL-mVV" secondAttribute="top" constant="126" id="xlR-E2-Z7i"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Wzr-iL-mVV" secondAttribute="bottom" id="9zq-AS-xiZ"/>
+                <constraint firstItem="Wzr-iL-mVV" firstAttribute="leading" secondItem="Iww-f9-D6F" secondAttribute="leading" id="KeD-zd-Vpg"/>
+                <constraint firstItem="Wzr-iL-mVV" firstAttribute="top" secondItem="Iww-f9-D6F" secondAttribute="top" id="WYm-TJ-sJb"/>
+                <constraint firstAttribute="trailing" secondItem="Wzr-iL-mVV" secondAttribute="trailing" id="rgR-kY-Ao2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="edit_background.png" width="458" height="60"/>
+        <image name="login_success.png" width="343" height="108"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,30 @@
+ <ion-header-bar class="bar-positive" align-title="center">
+   <h1 class="title">Login</h1>
+ </ion-header-bar>
+ <ion-content>
+   <form>
+     <div class="list list-inset">
+       <label class="item item-input">
+         <span class="input-label" ng-bind="gateway.label"></span>
+         <input type="text" ng-model="loginData.gateway" />
+       </label>
+       <label class="item item-input">
+         <span class="input-label" ng-bind="workPath.label"></span>
+         <input type="text" ng-model="rootWorkPath" />
+       </label>
+       <label class="item item-input">
+         <span class="input-label" ng-bind="username.label"></span>
+         <input type="text" ng-model="loginData.username" />
+       </label>
+       <label class="item item-input">
+         <span class="input-label" ng-bind="password.label"></span>
+         <input type="password" ng-model="loginData.password" />
+       </label>
+       <label class="item">
+         <button id="{{loginBtn.id}}" class="button icon button-block button-positive icon-right ion-log-in" ng-click="doLogin()" type="submit">{{loginBtn.value}}</button>
+       </label>
+     </div>
+   </form>
+ </ion-content>
+ <ion-footer-bar class="bar-light" align-title="center">
+ </ion-footer-bar>

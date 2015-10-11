@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A4FB1033-2235-4D14-9AE8-9AD5E1CFE29F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SvnSdk</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1673bce2-8a2e-4eae-899c-447fd854f6cd++3505</key>
+		<string>http://szxsvn09-rd:6801/svn/EBG_SDK_SVN/code/eSDK_Solution_V100R005/trunk/eSDK_BYOD_V100R005</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Client/source/iOS/SvnSdk/SvnSdk.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1673bce2-8a2e-4eae-899c-447fd854f6cd++3505</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>1673bce2-8a2e-4eae-899c-447fd854f6cd++3505</key>
+		<string>http://szxsvn09-rd:6801/svn/EBG_SDK_SVN</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://szxsvn09-rd:6801/svn/EBG_SDK_SVN/code/eSDK_Solution_V100R005/trunk/eSDK_BYOD_V100R005/Client/source/iOS/SvnSdk/SvnSdk.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1673bce2-8a2e-4eae-899c-447fd854f6cd++3505</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1673bce2-8a2e-4eae-899c-447fd854f6cd++3505</string>
+			<key>IDESourceControlWCCName</key>
+			<string>eSDK_BYOD_V100R005</string>
+		</dict>
+	</array>
+</dict>
+</plist>

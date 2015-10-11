@@ -1,0 +1,76 @@
+3 steps to do file encrypt/decrypt:
+
+1、初始化SDK环境
+2、初始化加解密环境
+3、调用文件加解密接口
+
+示例：
+- (IBAction)encryptFile:(id)sender 
+{
+    NSString *srcFilePath = [NSString stringWithFormat:@"%@/%@", self.basePathLabel.text ,[self.originPathTextView text]];
+    NSString *dstFilePath = [NSString stringWithFormat:@"%@/%@", self.basePathLabel.text ,[self.encryptPathTextView text]];
+
+    
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:srcFilePath];
+    
+    if([self.originPathTextView text].length == 0 || !fileExists)
+    {
+        [self showAlert:@"Please select a file to encrypt!"];
+        return;
+    }
+    
+    if([self.encryptPathTextView text].length == 0)
+    {
+        [self showAlert:@"Please select a encrypted file to decrypt!"];
+        return;
+    }
+    
+    SVN_FILE_S *file =  svn_fopen([dstFilePath UTF8String], "w");
+    
+    if (NULL == file) {
+        NSLog(@"open file:%@ error!", dstFilePath);
+        [self showAlert:@"Open encrypt file failed!"];
+        return;
+    }
+    
+    NSData *data = [NSData dataWithContentsOfFile:srcFilePath];
+    
+    int iRet = 0;
+
+    const int buf_size = 1024;
+    char buffer[1024];
+    memset(buffer, 0, buf_size);
+    
+    int srcRemain = [data length];
+    int srcLocation = 0;
+    while (srcRemain > 0) {
+        
+        int len = srcRemain > buf_size ? buf_size:srcRemain;
+        
+        NSRange bufRange = NSMakeRange(srcLocation, len);
+        
+        
+        srcLocation += len;
+        srcRemain -= len;
+        
+        [data getBytes:buffer range:bufRange];
+        
+        iRet = svn_fwrite((unsigned char *)buffer, 1, len, file);
+        if ( 0 > iRet ) {
+            
+            NSLog(@"write file error! iRet=%d", iRet);
+            [self showAlert:@"Write encrypt file error!"];
+            break;
+        }
+    }
+
+   
+    iRet = svn_fclose(file);
+    if ( 0 > iRet ) {
+        NSLog(@"close file error! iRet=%d", iRet);
+        [self showAlert:@"Close encrypted file error!"];
+        return;
+    }
+    
+}
+    

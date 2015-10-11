@@ -1,0 +1,23 @@
+<ion-view view-title="解密文件">
+	<ion-content>
+		<div class="text-center" style="margin-top:10px;">
+			<button class="button icon ion-filing" ng-click="openFileDialog()">openFileDialog</button>
+		</div>
+		<form>
+	     <div class="list list-inset">
+	       <label class="item item-input">
+	         <span class="input-label">文件地址</span>
+	         <input type="text" ng-model="decryptData.fileName" />
+	       </label>
+	       <label class="item item-input">
+	         <span class="input-label">解密地址</span>
+	         <input type="text" ng-model="decryptData.desFileName"  />
+	       </label>
+	       <label class="item">
+	         <button class="button icon button-block button-positive icon-right ion-locked" ng-click="doDecrypt()">decrypt</button>
+	       </label>
+	     </div>
+	   </form>
+	   <input type="file" id="file" style="display:none" />		
+	</ion-content>
+</ion-view>

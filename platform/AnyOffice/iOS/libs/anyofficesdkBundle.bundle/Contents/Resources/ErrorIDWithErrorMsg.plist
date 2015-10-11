@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>-1</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_OTHER_ERROR</string>
+	<key>-2</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_USERIP_FORBIDDEN</string>
+	<key>-3</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_SYSTEM_BUSY</string>
+	<key>-4</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_NOGATEWAY</string>
+	<key>-5</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_ERRORPASSWORD</string>
+	<key>-7</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_CERTIFICATE</string>
+	<key>-8</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_USERNAME_PASSWORD_EMPTY</string>
+	<key>-9</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_USERNAME_PASSWORD_EMPTY</string>
+	<key>-10</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_USERNAME_PASSWORD_EMPTY</string>
+	<key>-15</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_CONCURRENT_USER_LIMIT</string>
+	<key>-16</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_CERT_NUMBER_BEGIN</string>
+	<key>-17</key>
+	<string>MDM_FAILURE_ASSET_VALID_UESR_GROUPS</string>
+	<key>-20</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_NOT_ALLOW_PERIOD</string>
+	<key>-90</key>
+	<string>ANYOFFICE_LOGIN_TIMEOUT</string>
+	<key>-97</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_PORT_EMPTY</string>
+	<key>-98</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_ADDRESS_EMPTY</string>
+	<key>-99</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_EMAIL_ADDRESS_ERROR</string>
+	<key>-100</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_SYSTEM_POLICY_ERROR</string>
+	<key>-101</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_UNKNOW_ERROR</string>
+	<key>-102</key>
+	<string>LOGIN_FAILLOG_ANYOFFICE_LICENSE_MAX_NUMBER</string>
+	<key>-105</key>
+	<string>COMMON_CONFIGURATION_CHANGES</string>
+	<key>-1002</key>
+	<string>LOGIN_COMMON_REQUIRE_APPAUTHEN</string>
+	<key>-1008</key>
+	<string>ANYOFFICE_ERROR_NOFUNCTION</string>
+	<key>20000</key>
+	<string>LOGIN_FAIL_DEVICE_BUSY</string>
+</dict>
+</plist>

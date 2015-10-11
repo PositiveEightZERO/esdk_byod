@@ -1,0 +1,12 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="30dp"
+    android:lineSpacingExtra="3dp"
+    android:text="@string/app_name"
+    android:id="@+id/tv_common_content_text"
+    style="@style/tv.con_grey"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    />

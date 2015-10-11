@@ -1,0 +1,4 @@
+﻿3 steps to use HttpClient:
+1、登录SVN创建隧道
+2、使用SvnHttpClient代替DefaultHttpClient
+3、其他使用同DefaultHttpClient

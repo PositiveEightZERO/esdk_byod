@@ -1,0 +1,20 @@
+<ion-view view-title="接口示例">
+  <ion-content>
+    <!-- <ion-list>
+      <ion-item ng-repeat="playlist in playlists" ng-click="">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list> -->
+    
+    <div class="list" >
+    <div ng-repeat="playlist in playlists">
+	  <div class="item item-divider">
+	    {{playlist.title}}
+	  </div>
+	  <a class="item" ng-repeat="list in playlist.list track by $index" ng-click="goSingle(list.id)">
+	    {{list.title}}
+	  </a>
+	</div>
+	</div>
+  </ion-content>
+</ion-view>

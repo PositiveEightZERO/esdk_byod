@@ -1,0 +1,32 @@
+3 steps to do data encrypt/decrypt:
+
+1、初始化SDK环境
+2、初始化加解密环境
+3、调用数据加解密接口
+    
+示例：
+- (IBAction)encryptData:(id)sender {
+    
+    [self.originDataTextView resignFirstResponder];
+
+    NSString *originText = self.originDataTextView.text;
+    NSData *fileData = [originText dataUsingEncoding:NSASCIIStringEncoding];
+    
+    int fileLen = [fileData length];
+    
+    unsigned char origin[fileLen];
+    [fileData getBytes:origin length:fileLen];
+    unsigned char *outBuf = NULL;
+    unsigned long outLen = 0;
+    
+    int ret = SVN_API_EncryptLarge(origin, fileLen, &outBuf, &outLen);
+    
+    NSLog(@"SVN_API_EncryptLarge returns %d, result len:%d", ret, outLen);
+    
+    NSData *encryptedData = [NSData dataWithBytes:outBuf length:outLen];
+    
+    NSString *encryptedString = [self hexadecimalString:encryptedData];
+    
+    self.encryptedDataTextView.text = encryptedString;
+    
+}

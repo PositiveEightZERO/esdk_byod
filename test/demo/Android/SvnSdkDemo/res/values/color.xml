@@ -1,0 +1,14 @@
+
+    <resources>
+        <color name="white">#ffffff</color>
+        <color name="black">#000000</color>
+        <color name="grey">#cccccc</color>
+        <color name="high_grey">#5d5d5d</color>
+        <color name="clear">#00ffffff</color>
+        <color name="btn_content">#157efb</color>
+        <color name="btn_normal_withbg">#13a1ff</color>
+        <color name="btn_content_unable">#6e6e6e</color>
+        <color name="list_item_child_bg">#f8f7f7</color>
+        <color name="con_grey">#99666666</color>
+        <color name="http_nav_seq">#039aff</color>
+    </resources>

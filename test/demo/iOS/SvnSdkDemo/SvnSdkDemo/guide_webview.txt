@@ -1,0 +1,9 @@
+4 steps to use UIWebView:
+
+1、初始化SDK环境
+2、创建隧道
+3、注册NSURLProtocol：
+  [NSURLProtocol registerClass:[SecBrowHttpProtocol class]];
+4、使用UIWebView加载页面
+
+    

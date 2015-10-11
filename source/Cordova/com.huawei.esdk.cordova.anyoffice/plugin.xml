@@ -1,0 +1,193 @@
+<plugin id="com.huawei.esdk.cordova.anyoffice" version="0.0.1" 
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>AnyOffice</name>
+    <description>Description</description>
+    <js-module name="anyoffice" src="www/anyoffice.js">
+        <clobbers target="AnyOffice"/>
+    </js-module>
+    <js-module name="netinfo" src="www/netstatuscallback.js">
+        <clobbers target="navigator.netinfo"/>
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="LoginAgentCordova">
+                <param name="android-package" value="com.huawei.esdk.anyoffice.cordova.LoginAgentCordova"/>
+            </feature>
+            <feature name="NetStatusManagerCordova">
+                <param name="android-package" value="com.huawei.esdk.anyoffice.cordova.NetStatusManagerCordova"/>
+            </feature>
+            <feature name="FileEncryptionCordova">
+                <param name="android-package" value="com.huawei.esdk.anyoffice.cordova.FileEncryptionCordova"/>
+            </feature>
+            <feature name="SDKContextCordova">
+                <param name="android-package" value="com.huawei.esdk.anyoffice.cordova.SDKContextCordova"/>
+            </feature>
+            <feature name="FilePluginCordova">
+                <param name="android-package" value="com.huawei.esdk.anyoffice.cordova.FilePluginCordova"/>
+            </feature>
+            <feature name="VideoPlayerCordova">
+                <param name="android-package" value="com.huawei.esdk.anyoffice.cordova.VideoPlayerCordova" />
+            </feature>
+        </config-file>
+
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+            <uses-permission android:name="com.huawei.anyoffice.anyview" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.huawei.anyoffice.sdk.doc.ui.SDKDocViewer" android:label="@string/app_name">
+            </activity>
+        </config-file>
+        
+
+
+        <source-file src="src/android/LoginAgentCordova.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+        <source-file src="src/android/NetStatusManagerCordova.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+        <source-file src="src/android/FileEncryptionCordova.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+        <source-file src="src/android/SDKContextCordova.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+        <source-file src="src/android/FilePluginCordova.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+        
+        <source-file src="src/android/FileUtil.java" target-dir="src/com/huawei/esdk/anyoffice/cordova/util"/>
+        <source-file src="src/android/StringUtil.java" target-dir="src/com/huawei/esdk/anyoffice/cordova/util"/>
+        <source-file src="src/android/FileProgressResult.java" target-dir="src/com/huawei/esdk/anyoffice/cordova/util"/>
+        
+
+        <source-file src="src/android/StreamProxy.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+        <source-file src="src/android/VideoControllerView.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+        <source-file src="src/android/VideoPlayerCordova.java" target-dir="src/com/huawei/esdk/anyoffice/cordova"/>
+
+
+
+        <source-file src="src/android/libs/armeabi/libsvnapi.so" target-dir="libs/armeabi/" />
+        <source-file src="src/android/libs/armeabi/libanyofficesdk.so" target-dir="libs/armeabi/" />
+        <source-file src="src/android/libs/armeabi/libjniapi.so" target-dir="libs/armeabi/" />
+        <source-file src="src/android/libs/svnapi.jar" target-dir="libs" />
+        <source-file src="src/android/libs/AnyOfficeSDK.jar" target-dir="libs" />
+        <source-file src="src/android/libs/gson-2.2.4.jar" target-dir="libs" />
+
+        
+        
+        <!--  drawable src/android/resources -->
+        <resource-file src="src/android/res/drawable-hdpi/ic_action_next_item.png" target="res/drawable-hdpi/ic_action_next_item.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_action_next_item.png" target="res/drawable-mdpi/ic_action_next_item.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_action_next_item.png" target="res/drawable-xhdpi/ic_action_next_item.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_next_item.png" target="res/drawable-xxhdpi/ic_action_next_item.png" />
+
+        <resource-file src="src/android/res/drawable-hdpi/ic_action_previous_item.png" target="res/drawable-hdpi/ic_action_previous_item.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_action_previous_item.png" target="res/drawable-mdpi/ic_action_previous_item.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_action_previous_item.png" target="res/drawable-xhdpi/ic_action_previous_item.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_previous_item.png" target="res/drawable-xxhdpi/ic_action_previous_item.png" />
+
+        <resource-file src="src/android/res/drawable-hdpi/ic_action_remove.png" target="res/drawable-hdpi/ic_action_remove.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_action_remove.png" target="res/drawable-mdpi/ic_action_remove.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_action_remove.png" target="res/drawable-xhdpi/ic_action_remove.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_remove.png" target="res/drawable-xxhdpi/ic_action_remove.png" />
+
+
+        <resource-file src="src/android/res/drawable-xhdpi/ic_media_fullscreen_shrink.png" target="res/drawable-xhdpi/ic_media_fullscreen_shrink.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_media_fullscreen_stretch.png" target="res/drawable-xhdpi/ic_media_fullscreen_stretch.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_media_pause.png" target="res/drawable-xhdpi/ic_media_pause.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_media_play.png" target="res/drawable-xhdpi/ic_media_play.png" />
+
+        <resource-file src="src/android/res/layout/media_controller.xml" target="res/layout/media_controller.xml" />
+        <resource-file src="src/android/res/values/styles.xml" target="res/values/media_controller_styles.xml" />
+    </platform>
+	<platform name="ios">
+        <config-file parent="/*" target="config.xml" >
+
+            <feature name="SDKContextCordova">
+                <param name="ios-package" value="SDKContextCordova"/>
+            </feature>
+
+            <feature name="LoginAgentCordova">
+                <param name="ios-package" value="LoginAgentCordova"/>
+            </feature>
+
+            <feature name="NetStatusManagerCordova">
+                <param name="ios-package" value="NetStatusManagerCordova"/>
+            </feature>
+
+            <feature name="FileEncryptionCordova">
+                <param name="ios-package" value="FileEncryptionCordova"/>
+            </feature>
+
+            <feature name="FilePluginCordova">
+                <param name="ios-package" value="FilePluginCordova"/>
+            </feature>
+
+
+            <feature name="VideoPlayerCordova">
+                <param name="ios-package" value="VideoPlayerCordova" />
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/SDKContextCordova.h" target-dir="."/>
+        <source-file src="src/ios/SDKContextCordova.m" target-dir="."/>
+
+
+        <header-file src="src/ios/LoginAgentCordova.h" target-dir="."/>
+        <source-file src="src/ios/LoginAgentCordova.m" target-dir="."/>
+
+        <header-file src="src/ios/NetStatusManagerCordova.h" target-dir="."/>
+        <source-file src="src/ios/NetStatusManagerCordova.m" target-dir="."/>
+
+        <header-file src="src/ios/FileEncryptionCordova.h" target-dir="."/>
+        <source-file src="src/ios/FileEncryptionCordova.m" target-dir="."/>
+
+
+
+        <header-file src="src/ios/FilePluginCordova.h" target-dir="."/>
+        <source-file src="src/ios/FilePluginCordova.m" target-dir="."/>
+
+
+        <header-file src="src/ios/APLCustomAVARLDelegate.h" target-dir="."/>
+        <source-file src="src/ios/APLCustomAVARLDelegate.m" target-dir="."/>
+        <header-file src="src/ios/GUIPlayerView.h" target-dir="."/>
+        <source-file src="src/ios/GUIPlayerView.m" target-dir="."/>
+        <header-file src="src/ios/GUISlider.h" target-dir="."/>
+        <source-file src="src/ios/GUISlider.m" target-dir="."/>
+        <header-file src="src/ios/SvnResourceLoadOperation.h" target-dir="."/>
+        <source-file src="src/ios/SvnResourceLoadOperation.m" target-dir="."/>
+        <header-file src="src/ios/VideoPlayerCordova.h" target-dir="."/>
+        <source-file src="src/ios/VideoPlayerCordova.m" target-dir="."/>
+
+
+
+        <framework src="libz.dylib" />
+        <framework src="libstdc++.dylib" />
+        <framework src="MediaPlayer.framework" />
+
+        <framework src="src/ios/Frameworks/SvnSdk.framework" custom="true" />
+        <resource-file src="src/ios/Frameworks/anyofficesdkBundle.bundle" />
+
+
+        <resource-file src="src/ios/Resource/gui_close@1x.png" />
+        <resource-file src="src/ios/Resource/gui_close@2x.png" />
+        <resource-file src="src/ios/Resource/gui_close@3x.png" />
+        <resource-file src="src/ios/Resource/gui_expand@1x.png" />
+        <resource-file src="src/ios/Resource/gui_expand@2x.png" />
+        <resource-file src="src/ios/Resource/gui_expand@3x.png" />
+        <resource-file src="src/ios/Resource/gui_pause@1x.png" />
+        <resource-file src="src/ios/Resource/gui_pause@2x.png" />
+        <resource-file src="src/ios/Resource/gui_pause@3x.png" />
+        <resource-file src="src/ios/Resource/gui_play@1x.png" />
+        <resource-file src="src/ios/Resource/gui_play@2x.png" />
+        <resource-file src="src/ios/Resource/gui_play@3x.png" />
+        <resource-file src="src/ios/Resource/gui_shrink@1x.png" />
+        <resource-file src="src/ios/Resource/gui_shrink@2x.png" />
+        <resource-file src="src/ios/Resource/gui_shrink@3x.png" />
+
+
+
+
+    </platform>
+    
+</plugin>

@@ -1,0 +1,25 @@
+3 steps to do SQLite encrypt/Decrypt:
+
+1、初始化SDK环境
+2、调用sqlite3_open_s接口打开数据库文件
+3、调用其他sqlite接口
+
+示例：
+        const char *dbpath = [_databasePath UTF8String];
+        
+        int sqliteFlags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE ;
+        int ret = sqlite3_open_s(dbpath, &_personDB, sqliteFlags, NULL, "sdk");
+        
+        if ( ret == SQLITE_OK)
+        {
+            char *errMsg;
+            const char *sql_stmt =
+            "CREATE TABLE IF NOT EXISTS person (personid integer primary key autoincrement, name text, age INTEGER)";
+            
+            if (sqlite3_exec(_personDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+            {
+                _statusText.text = @"Failed to create table";
+            }
+            sqlite3_close(_personDB);
+        }
+    

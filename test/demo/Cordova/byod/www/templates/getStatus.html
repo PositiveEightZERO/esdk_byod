@@ -1,0 +1,15 @@
+<ion-view view-title="获取网络状态">
+	<ion-content>
+	    <div style="text-align:center;margin-top:10px;">
+			<button class="button button-positive" ng-click="getNetStatus()">
+			  getNetStatus
+			</button>
+		</div>
+		
+		<div ng-if="showResult === true" class="card">
+	  		<div class="item item-text-wrap">
+	    		{{statusResult}}
+		    </div>
+		</div>
+	</ion-content>
+</ion-view>

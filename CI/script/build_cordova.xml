@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BYOD_SDK_Win32" default="release" basedir="../../">
+
+
+	
+	<property name="src_base_dir" value="source" />
+	<property name="demo_dir" value="test/demo" />
+	<property name="platform_dir" value="platform" />
+	<property name="build_dir" value="Build" />
+	<property name="release_dir" value="00.Release" />
+	
+	<property name="sub_sdk_dir" value="${src_base_dir}/Cordova" />
+	<property name="sub_demo_dir" value="${demo_dir}/Cordova" />
+
+	<property name="sub_sdk_android_dir_libs" value="${sub_sdk_dir}/com.huawei.esdk.cordova.anyoffice/src/android/libs" />
+	<property name="sub_sdk_ios_dir_libs" value="${sub_sdk_dir}/com.huawei.esdk.cordova.anyoffice/src/ios/frameworks" />
+
+
+	<property name="android_sdk_dir" value="${src_base_dir}/Android/SVN_SDK" />
+	<property name="ios_sdk_dir" value="${src_base_dir}/iOS/SvnSdk" />
+	<property name="ios_sdk_release_dir" value="${ios_sdk_dir}/build/Release-iphoneos" />
+
+	<loadproperties srcFile="${build_dir}/release.properties" />
+	
+	<tstamp>
+        <format property="TODAY" pattern="yyyy-MM-dd" locale="cn" />
+  	</tstamp>
+
+
+  	<target name="release" depends="clean">
+		<echo message="building BYOD_SDK_Cordova project" />
+
+
+    	<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${ios_sdk_release_dir}/SvnSdk.framework ${sub_sdk_ios_dir_libs}/"  />     
+    	</exec>
+   
+		<exec executable="cp" failonerror="true">
+			<arg line="-Rf ${ios_sdk_dir}/SvnSdk/anyofficesdkBundle.bundle ${sub_sdk_ios_dir_libs}/"  />     
+    	</exec>
+
+
+    	<copy todir="${sub_sdk_android_dir_libs}" overwrite="true">
+			<fileset dir="${android_sdk_dir}/libs/">
+				<include name="*.jar" />
+				<include name="armeabi/libsvnapi.so" />
+				<include name="armeabi/libanyofficesdk.so" />
+				<include name="armeabi/libjniapi.so" />
+			</fileset>
+    	</copy>
+
+		<zip destfile="${release_dir}/${TODAY}/${project_name}_${project_version_software}_Cordova.zip" >
+			<fileset dir="${sub_sdk_dir}" />
+		</zip>
+		
+		<zip destfile="${release_dir}/${TODAY}/${project_name} ${project_version_demo} 代码样例 01(Cordova).zip">
+			<fileset dir="${sub_demo_dir}" />
+		</zip>
+
+		
+	</target>
+
+	<target name="clean">
+
+		<delete quiet="true" includeEmptyDirs="true">
+		  	<fileset dir="${sub_sdk_android_dir_libs}" includes="**/*"/>
+		</delete>
+
+		<delete quiet="true" includeEmptyDirs="true">
+		  	<fileset dir="${sub_sdk_ios_dir_libs}" includes="**/*"/>
+		</delete>
+	</target>
+</project>
