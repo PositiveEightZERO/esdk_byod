@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!-- 由产品CMO配置此文件 -->
+<ciCloudJob>
+    <!-- 定义下载任务 -->
+    <scm>
+		<!-- 配置库属性名[key]不能有中文，如果配置库属性值[value]包含中中文,请确保此配置文件的编码设置:encoding="GBK"
+			下载代码<svn>、<cc>和<customDown>节点上都支持3个属性：retryTimes retryIntervalMinutes deleteBeforeLastRetry
+		     retryTimes表示下载失败的重试次数，不设置或者设置错误的值（如非数值或者负数等），则使用默认值3。注意若设置为0，则表示不重试。
+		     retryIntervalMinutes表示两次重试之间的时间间隔，单位分钟，不设置或者设置错误的值（如非数值或者负数等），则使用默认值1。注意若设置为0，则表示重试时不用等待时间。
+		     deleteBeforeLastRetry表示最后一次重试前是否要删除原来的下载内容，不设置或者设置错误的值（除了true/false以外的值），则使用默认值false,表示不删除
+		     svn_excludeDir 用于svn更新过滤目录，配置为工程相对目录，可不配置，不支持中文字符与特殊字符
+		     isDeleteModifiedFiles 用来标识是否在执行代码更新下载之前删除被修改的svn文件，取值为true或者false，配置成非true的其他字符串或者不配置该项都默认为false
+		-->
+        <tasks/>
+        <config> <!--定义下载配置的任务，即配置库上的CI目录-->
+           <svn  name="config" >
+				<property  key="svn_server_url" value="http://szxsvn09-rd:6801/svn/EBG_SDK_SVN/code/eSDK_Solution_V100R005/trunk/eSDK_BYOD_V100R005/Client/CI"/>
+				<property  key="svn_name" value="z00233055"/>
+				<property  key="svn_password" value="4ac33cd8edcaee1997d33b7efa95b24a"/>		
+				<property  key="svn_revision" value=""/>  
+	        </svn>
+        </config>
+        <current> <!--定义下载代码的任务-->
+			<svn  name="eSDK_BYOD" checkModification="false">
+				<property  key="svn_server_url" value="http://szxsvn09-rd:6801/svn/EBG_SDK_SVN/code/eSDK_Solution_V100R005/trunk/eSDK_BYOD_V100R005/Client"/>
+				<property  key="svn_name" value="z00233055"/>
+				<property  key="svn_password" value="4ac33cd8edcaee1997d33b7efa95b24a"/>		
+				<property  key="svn_revision" value=""/>
+				<property  key="svn_excludeDir" value="" />
+				<!--property  key="isDeleteModifiedFiles" value="false" /-->
+			</svn>
+        </current>
+		<!--定义基线代码，它用来跑cct等任务时生成差异报告-->
+		<!--
+        <base>
+           <svn  name="sampleproject" >
+				<property  key="svn_server_url" value="http://10.78.151.120/svn/U2000/liuli_demoTask/sampleCode"/>
+				<property  key="svn_name" value="w00214345"/>
+				<property  key="svn_password" value="8fae4c535a63df4c6f1555d5f2c0b90f"/>		
+				<property  key="svn_revision" value="580"/> 
+			</svn>
+		</base>
+		-->
+    </scm>
+	
+    <workingcopy>
+		<param   name="workingsystem" value="sampleproject"/>  <!-- 开发人员工作的代码子系统，用于与基线对比 -->
+		<param   name="sourcepath" value="../.."/>   <!-- 本地代码相对于工程文件的相对目录。如：我本地代码目录为sampleproject，工程文件在sampleproject/CI/IDE下面 -->
+		<param   name="limit" value="5"/>   <!--超过数量不同步；默认不受限-->
+		<!-- 以下四个属性用于平台-产品联调访问全量代码，用于平台开发人员选择换产品文件的路径；基线对比是否可用此目录？ -->
+		<param   name="baselineHost" value="10.74.174.100"/>  <!-- 对比服务地址，最好用产品的构建POM；工程内有产品、平台的全部代码 -->
+		<param   name="baselineCodeRoot" value="D:/pom/PrivateBuild/code/current"/>  <!-- 对比服务器上代码根路径 -->
+		<param   name="baselineUsername" value="vm1074174100\administrator"/> <!-- 访问用户 -->
+		<param   name="baselinePassword" value="008ca928b82351eb"/> <!-- 访问密码 -->
+	</workingcopy>
+	
+	
+    <!-- 定义构建任务 -->
+    <agentTasks>
+		<!--
+			1.这里是定义所有agentTask
+			2.agentTask下的所有task默认顺序执行
+			3.compile、package和自定义任务必须使用name属性配置在CIConfig.xml中定义的任务
+			4.使用标准插件的静态检查任务(cct/pclint/sourcemonitor/simian)必须使用module属性配置在ModuleConfig.xml中定义的模块名称
+			5.配置文件中的标签，属性名，值不能包含有中文
+			6.支持使用priority参数定义任务优先级，优先级从0～10依次升高，若不定义，默认为0.
+			7.支持使用timeoutMinutes参数指定该任务的超时时间，单位分钟。若不设置，或者设置的值小于等于0，或者设置的值不是数值，则认为不超时。
+			8.支持使用retryTimes参数指定任务失败（包括任务超时）后任务的重试次数。不设置则不重试。
+			9.支持使用parallel用于指定是否需要要分配到的那个agent上并行执行那些task(配置为true表示要并行执行；不配置或配置为其它值，都会串行执行)
+			  注意：
+			   配置依赖时请勿在一个串行执行的agentTask标签中配置前面的task依赖后面的task，如下面样例中compile_common任务配置在前，
+			   但却依赖后面的compile_client，这样执行时会导致前面的compile_common任务一直在等待后面的compile_client任务完成而卡住。
+				样例：<agentTask agentLabel="compile">
+						<task plugin="compile" name="compile_common" depends="compile_client"/>
+						<task plugin="compile" name="compile_client"  />
+					  </agentTask>
+			10.支持使用syncCodeFlag用于指定是否需要agent从pom上同步代码，可设置为："true"、"false"、默认（不配、配错或者不添加此属性）,"true":强制同步代码，"false"：强制不同步代码，默认：在一个agent上只同步一次代码。
+			11.支持使用agentLabel用于指定任务运行时需要的agent的资源标签，agent的资源标签在RPM界面上查看。
+			12.支持使用dependPlatformIDs用于指定任务运行时的依赖平台id，多个用";"分开，依赖平台的id在云配置界面的依赖平台处配置。
+			13.支持按文件夹同步代码，syncCodeDir用于配置指定需同步代码的文件夹路径（从子系统开始），多个用";"分开。
+		-->
+		<!--
+		<agentTask  name ="package" agentLabel="Client"  failOnError="true" >
+			<task plugin="package" name="Package_IVS_Client" module=""  depends=""/>
+		</agentTask>
+		
+		<agentTask  name ="pclint_task" agentLabel="Client"  failOnError="true" >
+            <task plugin="pclint" name="PClint_SDK" module="IVS_SDK"/>
+			<task plugin="pclint" name="PClint_OCX" module="IVS_OCX"/>
+       	</agentTask>
+		-->
+		
+	    <agentTask  name ="compile" agentLabel="Client"  failOnError="true" >
+			<task plugin="compile" name="Compile_BYOD_Android" module=""  depends=""/>
+		</agentTask>
+				
+		<agentTask  name ="cct_task" agentLabel="Client"  failOnError="true" >
+            <task plugin="cct" name="CCT_BYOD_ANDROID_JAVA" module="Android_Java"/>
+			<task plugin="cct" name="CCT_BYOD_ANDROID_JNI" module="Android_Jni"/>
+       	</agentTask>
+		
+		<agentTask  name ="sourcemonitor_task" agentLabel="Client"  failOnError="true" >
+            <task plugin="sourcemonitor" name="SourceMonitor_BYOD" module="Android_Java"/>
+			<task plugin="sourcemonitor" name="SourceMonitor_BYOD_JNI" module="Android_Jni"/>
+       	</agentTask>
+		
+		<agentTask  name ="simian_task" agentLabel="Client"  failOnError="true" >
+            <task plugin="simian" name="Simian_BYOD" module="Android_Java"/>
+       	</agentTask>
+		
+		<agentTask  name ="findbugs_task" agentLabel="Client"  failOnError="true" >
+            <task plugin="findbugs" name="findbugs_esdk_byod_android"/>
+       	</agentTask>
+    </agentTasks>
+	
+    <!-- 定义构建流程 -->
+    <schedule>
+		<!--schedule下面可以定义一个downTasks和多个concurrent、composite、agentTask节点-->
+        <downTasks   name="Download" failOnError="true">　
+		<!--downTasks节点是必须有的，且只能有一个; 它支持failOnError-->
+			<!--downTask节点可以有多个；每个节点指定一个下载任务；增加isBase表示它是<base>里的任务-->
+			<downTask name="config" />
+            <downTask name="eSDK_BYOD" />
+        </downTasks>
+		<!--concurrent表示并行任务集，即它的直接子节点是并行执行的；composite表示串行任务集-->
+		<!--concurrent、composite可以互相嵌套、支持多结嵌套、
+		需要填name属性(name值不要与其它concurrent/composite/agentTask/task重名)、不支持failOnError-->
+		<composite name="Build">
+			<agentTask name="compile" />
+		</composite>
+        <composite name="StaticCheck">
+			<agentTask name="cct_task" />
+			<agentTask name="simian_task" />
+			<agentTask name="sourcemonitor_task" />
+			<agentTask name="findbugs_task" />
+		</composite>
+		<!--
+		<composite name="Build">
+			<agentTask name="compile" />	
+			<agentTask name="package" />
+		</composite>
+		-->
+    </schedule>
+</ciCloudJob>
+
+
+

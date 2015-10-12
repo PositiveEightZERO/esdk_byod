@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<buildCloudParam>
+  <baseconfig>
+    <property name="useCloudConfig" value="true" />
+    <property name="productName" value="eSDK Solution" />
+    <property name="productVersion" value="V100R005C20" />
+    <property name="resourceOwnerKey" value="eSDK" />    
+    <property name="resourceAccessToken" value="eSDK_token" />
+	<property name="pbiId" value="21472120" />
+	<property name="pbiNmae" value="eSDK Solution V100R005C20" />
+    <property name="isIncreaseBuild" value="true" />
+    <property name="codeShareName" value="" />
+    <property name="codeShareOnPom" value="false" />
+    <property name="isPublishToPVM" value="false" />
+    <property name="isAlwaysGetRelease" value="false" />
+  </baseconfig>
+  <advancedconfig>
+    <!--是否在pom上保留上次的构建结果，默认为true-->
+	<!--
+    <property name="isKeepLastResult" value="true" /> 
+	-->
+	<!-- 贪婪构建，一次性申请到所有所需构建资源，排队时可预估出构建开始时间，与BuildGroup配合使用，默认为false -->
+	<!--
+	<property name="greedyBuild" value="false" /> 
+	-->
+	<!--  构建群组，用来标识同一个构建项目组，greedyBuild使用 -->
+	<!--
+	<property name="buildGroup" value="Greedy_Test" />
+	-->
+	<!--  选择所使用的云构建服务地域,与Router上对应 Shenzhen DNG ;Shanghai SHA; Beijing PEK; Chengdu NCTU; Xi'an XIY ; Wuhan WUH ; Hangzhou HGH; Nanjing NJH;-->
+	<!--<property name="specialLocation" value="HGH"/>-->
+	<!--  跨pom使用增量构建，指定所使用的ftp IP -->
+	<!-- <property name="sharePomIp" value="10.135.107.76" /> -->
+	<!-- 以共享目录形式打开构建结果，需手动设置文件夹共享 -->
+	<!-- <property name="sharePomFolder" value="PrivateBuild"/> -->
+	<property name="specialLocation" value="NJH"/>
+	
+  </advancedconfig>
+  <platforms>
+    <platform artifactId="SamplePlatform1" platformName="SamplePlatform" version="V001" />
+    <platform artifactId="SamplePlatform2" platformName="SamplePlatform" version="V002" />
+    <platform artifactId="SamplePlatform3" platformName="SamplePlatform" version="V003" />
+  </platforms>
+   <!-- greedyBuild所需资源集 -->
+  <AgentsNeeded>
+	 <agent label="vt001-win32-01" count="1"/> 
+  </AgentsNeeded> 
+  <!-- 用户自定义环境变量 -->
+  <environmentVariables>  
+	      <environmentVariable name = "system_environmentVariable" value ="123" />
+		  <environmentVariable name = "system_environmentVariable1" value ="234" />
+		  <environmentVariable name = "system_environmentVariable2" value ="456" />
+  </environmentVariables>
+  <!--  选择所使用的云构建服务所需要的自定义参数 -->
+  <extendedAttribute>
+      <attribute name="attribute1" value="value1"/>
+	  <attribute name="attribute2" value="value2"/> 
+  </extendedAttribute>
+</buildCloudParam>

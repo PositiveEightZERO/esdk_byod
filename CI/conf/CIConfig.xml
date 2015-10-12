@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 修改过之后务必提交配置库后再进行构建-->
+<ciConfig version="1.0">
+	<!--run.analyse.with.baseCode 配置是否要生成基于代码的差异报告
+		run.analyse.with.baseReport是否要生成基于基线报告的差异报告。
+			注1： 如果不配，这两个值都会默认为true 。
+			注2： 基线报告需要放到配置所在的配置库中与conf平级的basereports目录里（创建basereports时，请注意区分大小写）。
+		plugin.pclint.runEA　用于配置执行pclint时，是否使用EA. 默认为false
+	-->
+	<baseproperties>
+		<property name="run.analyse.with.baseCode" value="true"/>
+		<property name="run.analyse.with.baseReport" value="true"/>
+		<property name="plugin.pclint.runEA" value="false" />    
+	</baseproperties>
+	<!-- ================================"此配置文件中使用相对路径时的规则"=====================================
+		1.所有相对路径从子系统名称开始，子系统名称指scm.xml中配置的svn或cc节点的name属性值，此名称在配置库上不存在。
+		2.
+	-->
+    <ruleSet>   <!--配置pclint任务，更具体参考：http://3ms.huawei.com/hi/group/6373/wiki_182993.html -->
+        <!-- "配置Pclint文件，缺省使用defaultLntFile项配置的Pclint文件，各模块也可以配置自己的Pclint文件" -->
+		<!-- env配置lnt文件所引用到的环境变量，缺省则使用defaultEnv配置的环境变量-->
+		<!-- emakeRoot配置EA加速的路径，缺省使用defaultEmakeRoot的配置 -->
+    </ruleSet>
+	
+	<!-- "编译任务"  详见：http://3ms.huawei.com/hi/group/6373/wiki_197975.html -->
+    <compiles>
+        <!-- "支持重定向日志输出，使用directionallogfile属性可以指定输出的日志文件的位置" -->
+		<!--只支持相对路径，相对于 %project%/code/current -->
+		<!-- name在任务文件调用   layerPath报告生成的路径层次(不能为空)  编译器gcc，msvc，javac等  compileFilePath编译脚本所在的路径   compileFile编译的一键式脚本   compileParam编译参数          directionallogfile重定向日志输出-->
+		<compile name ="Compile_BYOD_Android" layerPath="/BYOD_Android"  compiler="javac" compileFilePath="eSDK_BYOD/CI/script" compileFile="build.xml" compileParam=""/>
+    </compiles>
+	
+	<!-- "打包任务" 详见：http://3ms.huawei.com/hi/group/6373/wiki_258895.html --> 
+    <packages> 
+			<!-- name用于任务调用            workingDir打包脚本的所在路径                     executable打包脚本                    argParam脚本的参数-->
+       	   <package name = "Package_BYOD_Android"      workingDir="eSDK_BYOD/CI/script"  executable = "compile.xml"  argParam = ""/>
+	</packages>
+	
+	<!-- "自定义任务" --> 	
+	<customTasks>
+		<task name="findbugs_esdk_byod_android" plugin="findbugs" layerPath="/BYOD_Android">
+            <params>
+                <param name ="classpathRefid" value="esdk_byod_android_bin"/>  
+            </params>
+        </task>
+		<task name="CodeCC_BYOD_Andriod" plugin="CodeCC" layerPath="/CodeCC" workingDir="eSDK_BYOD/CI/script" executable="compile.bat"  argParam=""  echo="run CodeCC_BYOD_Andriod">
+			<params>
+				<!--param name="iscompile" value="true"/> 只支持true,不支持直接使用中间文件作检查
+				<param name="tqeinputdir" value=""/-->
+				<param name="compileos" value="win32"/>
+				<param name="mailto" value="l00174413"/>
+				<param name="mailcc" value=""/>
+				<param name="component" value=""/><!--请填写以${CONFIG_CI_ROOT}的CI目录为根目录的相对路径，如：script/componentUserList_java.xml-->
+				<param name="checkrules" value="coverity"/>
+				<param name="isincremental" value="false"/>
+				<param name="language" value="java"/> <!-- 支持c/c++/java -->
+				<!--pbi.id与subsystem会从内存里读出来-->
+			</params>
+		</task>
+		<task name="CodeCC_Cordova_InAppBrowser" plugin="CodeCC" layerPath="/CodeCC" workingDir="eSDK_BYOD/CI/script" executable="build_inappbrowser.xml"  fortifyexecutable="build_fortify.bat"  argParam=""  echo="run CodeCC_Cordova_InAppBrowser">
+			<params>
+				<!--param name="iscompile" value="true"/> 只支持true,不支持直接使用中间文件作检查
+				<param name="tqeinputdir" value=""/-->
+				<param name="compileos" value="win32"/>
+				<param name="mailto" value="l00174413"/>
+				<param name="mailcc" value=""/>
+				<param name="component" value=""/><!--请填写以${CONFIG_CI_ROOT}的CI目录为根目录的相对路径，如：script/componentUserList_java.xml-->
+				<param name="checkrules" value="coverity,fortify"/>
+				<param name="isincremental" value="false"/>
+				<param name="language" value="java"/> <!-- 支持c/c++/java -->
+				<!--pbi.id与subsystem会从内存里读出来-->
+			</params>
+		</task>
+	</customTasks>
+</ciConfig>

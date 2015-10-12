@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- "由产品CIE配置此文件" -->
+<!-- 修改过之后务必提交配置库后再进行构建-->
+<!-- "以下配置模块信息，用于静态检查,如：sourcemonitor、cct、simian。" -->
+<moduleConfig version="1.0">
+    <!-- "兼容pattern配置模式下的模块路径公共配置声明,对后面的每个模块都有效" -->
+    <modulePatternPublicSet>
+		<exclude name="**/*.asn" />
+		<exclude name="**/*.so" />
+    </modulePatternPublicSet>
+	
+	<modules>
+		<!-- "用户配置的多组模块信息，用于生成Pattern以及静态检查任务" -->
+		<module name="Android_Java" language="java" layerPath="/BYOD_Android" owner="z00233055">
+			<include name="eSDK_BYOD/source/Android/SVN_SDK/src/**/*.java" />
+			<exclude name="eSDK_BYOD/source/Android/SVN_SDK/src/com/huawei/svn/sdk/sqlite/**/*.java" />
+		</module>
+		
+		<module name="Android_Jni" language="c++" layerPath="/BYOD_Android" owner="z00233055">
+			<include name="eSDK_BYOD/source/Android/SVN_SDK/jni/software/svn_*.h" />
+			<include name="eSDK_BYOD/source/Android/SVN_SDK/jni/software/svn_*.c" />
+			<include name="eSDK_BYOD/source/Android/SVN_SDK/jni/software/fsm_*.h" />
+			<include name="eSDK_BYOD/source/Android/SVN_SDK/jni/software/fsm_*.c" />
+		</module>
+		
+		
+		<module name="iOS" language="c++" layerPath="/BYOD_iOS" owner="z00233055">
+			<include name="eSDK_BYOD/source/iOS/SvnSdk/SvnSdk/*.h" />
+			<include name="eSDK_BYOD/source/iOS/SvnSdk/SvnSdk/*.m" />
+		</module>
+	</modules>
+	
+	<paths>
+		<path id="esdk_byod_android_bin">    
+            <pathelement path="eSDK_BYOD/source/Android/SVN_SDK/bin"/>    
+        </path>
+	</paths>
+	
+	<!--做pclint检查，需在此处定义-->
+	<!--"注：
+	1. 此中的模块名称必须是modules中已定义的，与modules中的模块名称一致
+	2. extends="true"表示继承modules定义的内容，false则为不继承，需重新定义此模块内容
+	3. defaultExtends="true"缺省的时候extends的属性则用defaultExtends配置的属性
+	-->
+	<lintModuleSet defaultExtends="true">
+	
+	</lintModuleSet>
+</moduleConfig>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- 由产品CMO配置此文件 -->
+<!-- 修改过之后务必提交配置库后再进行构建-->
+<productConfig version="1.0">
+	<!--==1.配置基本信息===============================================================================-->
+	<!--"注:groupId+artifactId+version能唯一标识此产品/子系统/组件"-->
+	
+	<!--"groupId:    产品/子系统/组件所属产品线的名称:(无线:Wireless;网络:Network;中研:CentralRD;核心网:CoreNet;业软:ApplicationAndSoftware)"-->
+	<!--"artifactId: 产品/子系统/组件的名称,不是整个产品的名称(当产品无子系统或组件时与产品名称一致即可),与scm.xml中svn节点的name属性保持一致"-->
+	<!--"version:    产品/子系统/组件的版本(可以到VxxxRxxxCxxxBxxxSPxx)"-->
+	<groupId>eSDK</groupId>
+	<artifactId>eSDK BYOD</artifactId>
+	<version>V100R003</version>
+	
+	<!--"配置此产品需要的构建环境，每种环境<environment>下只有1个<envTemplate>节点"-->
+	<!--http://3ms.huawei.com/hi/group/6373/wiki_181191.html#3-->
+	<environments>
+		<environment name="env-win7">
+			<!--将ID为vt001-winxp-01的agent映射成环境env-winxp去调用，在任务文件中调用
+			vt001-winxp-01 这个参数是在agent的D:\windows_buildcloud-agent\conf\resource.properties中定义-->
+			<envTemplate>Client</envTemplate>
+		</environment>
+	</environments>
+</productConfig>

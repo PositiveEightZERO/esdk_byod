@@ -20,6 +20,7 @@
 	<property name="test_dir" value="test" />
 	<property name="build_dir" value="Build" />
 	<property name="release_dir" value="00.Release" />
+	<property name="tools_dir" value="tools" />
 	
 	
 	<property name="sub_svnsdk_dir" value="${src_base_dir}/Android/SVN_SDK" />
@@ -47,7 +48,7 @@
 
     
     	<copy todir="${sub_svnsdk_dir}/jni/libs" overwrite="true">
-			<fileset dir="${ndk.dir}/Android">
+			<fileset dir="${tools_dir}/Android">
 				<include name="*.so" />
 			</fileset>
 			<fileset dir="${platform_dir}/AnyOffice/Android/libs">
